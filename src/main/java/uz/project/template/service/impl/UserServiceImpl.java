@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
-    public ApiResponse<UserResponseDto> createUser(UserDto userDto) {
+    public ApiResponse<?> createUser(UserDto userDto) {
         try{
             AuthUserEntity user = UserDto.toEntity(userDto, new AuthUserEntity());
             user.setPassword(passwordEncoder.encode(userDto.getPassword()));
@@ -34,12 +34,12 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public ApiResponse<UserResponseDto> updateUser(UserDto userDto) {
+    public ApiResponse<?> updateUser(UserDto userDto) {
         return null;
     }
 
     @Override
-    public ApiResponse<AuthUserEntity> getUser(String id) {
+    public ApiResponse<?> getUser(String id) {
         return null;
     }
 

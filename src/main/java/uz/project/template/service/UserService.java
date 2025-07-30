@@ -7,8 +7,8 @@ import uz.project.template.entity.AuthUserEntity;
 
 public interface UserService {
 
-    ApiResponse<UserResponseDto> createUser(UserDto userDto);
-    ApiResponse<UserResponseDto> updateUser(UserDto userDto);
-    ApiResponse<AuthUserEntity> getUser(String id);
+    ApiResponse<?> createUser(UserDto userDto);
+    ApiResponse<?> updateUser(UserDto userDto);
+    ApiResponse<?> getUser(String id);
 
 }

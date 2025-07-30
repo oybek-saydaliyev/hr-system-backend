@@ -20,7 +20,6 @@ public class UserDto extends BaseDto{
         entity.setId(dto.getId());
         entity.setUsername(dto.getUsername());
         entity.setPassword(dto.getPassword());
-        entity.setRole("USER");
         return entity;
     }
 }

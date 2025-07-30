@@ -26,9 +26,9 @@ public class AuthController {
         return ResponseEntity.ok(authService.loginWithToken(token));
     }
 
-    @PreAuthorize("isAuthenticated()")
     @GetMapping("/get")
     public String getTest() {
         return "Success";
     }
+
 }

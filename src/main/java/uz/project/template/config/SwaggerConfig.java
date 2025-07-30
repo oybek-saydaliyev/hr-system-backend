@@ -19,13 +19,14 @@ public class SwaggerConfig implements WebMvcConfigurer {
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
+                .openapi("3.0.3")
                 .info(new Info()
                         .title("API Documentation")
                         .version("1.0")
                         .description("Spring Security API Documentation"))
                 .servers(List.of(
                         new Server().url("http://localhost:5050").description("Local Server"),
-                        new Server().url("http://enter-your-prod-server-domen").description("Prod Server")))
+                        new Server().url("https://5b2bc866eb97.ngrok-free.app").description("Ngrok Server")))
                 .components(new Components()
                         .addSecuritySchemes("bearerAuth", new SecurityScheme()
                                 .type(SecurityScheme.Type.HTTP)
