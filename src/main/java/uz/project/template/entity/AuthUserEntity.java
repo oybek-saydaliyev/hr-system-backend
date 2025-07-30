@@ -28,6 +28,7 @@ public class AuthUserEntity extends BaseEntity implements UserDetails {
     private String username;
     @Column(nullable = false)
     private String password;
+    private Long groupId;
 
     @ManyToMany(fetch = FetchType.LAZY)
     private Set<RoleEntity> roles;

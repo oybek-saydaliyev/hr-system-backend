@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import uz.project.template.base.ApiResponse;
 import uz.project.template.dto.RoleDto;
-import uz.project.template.entity.PermissionEntity;
 import uz.project.template.entity.RoleEntity;
 import uz.project.template.repository.PermissionRepository;
 import uz.project.template.repository.RoleRepository;
@@ -13,8 +12,6 @@ import uz.project.template.utils.ResMessages;
 
 import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor

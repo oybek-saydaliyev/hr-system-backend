@@ -14,12 +14,14 @@ public class UserDto extends BaseDto{
     private Long id;
     private String username;
     private String password;
+    private Long groupId;
 
 
     public static AuthUserEntity toEntity(UserDto dto, AuthUserEntity entity) {
-        entity.setId(dto.getId());
-        entity.setUsername(dto.getUsername());
-        entity.setPassword(dto.getPassword());
+        entity.setId(dto.getId() != null ? dto.getId() : entity.getId());
+        entity.setUsername(dto.getUsername() != null ? dto.getUsername() : entity.getUsername());
+        entity.setPassword(dto.getPassword() != null ? dto.getPassword() : entity.getPassword());
+        entity.setGroupId(dto.getGroupId() != null ? dto.getGroupId() : entity.getGroupId());
         return entity;
     }
 }

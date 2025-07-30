@@ -10,10 +10,12 @@ import uz.project.template.entity.AuthUserEntity;
 public class UserResponseDto extends BaseDto {
     private Long id;
     private String username;
+    private Long groupId;
 
     public static UserResponseDto toDto(UserResponseDto dto, AuthUserEntity entity) {
         dto.setId(entity.getId());
         dto.setUsername(entity.getUsername());
+        dto.setGroupId(entity.getGroupId());
         return dto;
     }
 

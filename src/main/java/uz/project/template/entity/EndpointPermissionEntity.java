@@ -1,6 +1,8 @@
 package uz.project.template.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 import uz.project.template.base.BaseEntity;

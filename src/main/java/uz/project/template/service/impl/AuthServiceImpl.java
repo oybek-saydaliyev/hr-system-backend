@@ -3,8 +3,6 @@ package uz.project.template.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import uz.project.template.base.ApiResponse;
 import uz.project.template.dto.UserDto;
 import uz.project.template.dto.UserResponseDto;
 import uz.project.template.entity.AuthUserEntity;
@@ -14,7 +12,6 @@ import uz.project.template.service.AuthService;
 import uz.project.template.utils.ResMessages;
 
 import java.util.HashMap;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
