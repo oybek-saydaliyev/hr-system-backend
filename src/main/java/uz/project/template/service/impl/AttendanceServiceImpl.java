@@ -1,6 +1,8 @@
 package uz.project.template.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import uz.project.template.base.ApiResponse;
 import uz.project.template.dto.AttendanceDto;
@@ -10,7 +12,6 @@ import uz.project.template.repository.AttendanceRepository;
 import uz.project.template.service.AttendanceService;
 import uz.project.template.utils.ResMessages;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -45,9 +46,9 @@ public class AttendanceServiceImpl implements AttendanceService {
     }
 
     @Override
-    public ApiResponse<?> getAll() {
+    public ApiResponse<?> getAll(Pageable pageable) {
         try{
-            return new ApiResponse<>(true, attendanceRepository.findAll(), ResMessages.SUCCESS);
+            return new ApiResponse<>(true, attendanceRepository.findAll(pageable), ResMessages.SUCCESS);
         }catch (Exception e){
             e.printStackTrace();
             return new ApiResponse<>(false, e.getMessage());
@@ -55,9 +56,9 @@ public class AttendanceServiceImpl implements AttendanceService {
     }
 
     @Override
-    public ApiResponse<?> getAllByUserId(Long userId) {
+    public ApiResponse<?> getAllByUserId(Long userId, Pageable pageable) {
         try{
-            List<AttendanceEntity> allByUserId = attendanceRepository.findAllByUserId(userId);
+            Page<AttendanceEntity> allByUserId = attendanceRepository.findAllByUserId(userId, pageable);
             return new ApiResponse<>(true, allByUserId, ResMessages.SUCCESS);
         }catch (Exception e){
             e.printStackTrace();
@@ -66,10 +67,10 @@ public class AttendanceServiceImpl implements AttendanceService {
     }
 
     @Override
-    public ApiResponse<?> getAllByGroupAndStatus(Long groupId, AttendanceStatus status) {
+    public ApiResponse<?> getAllByGroupAndStatus(Long groupId, AttendanceStatus status, Pageable pageable) {
         try{
-            List<AttendanceEntity> allByGroupIdAndStatus = attendanceRepository.findAllByUser_GroupIdAndStatus(groupId, status);
-            return new ApiResponse<>(true, allByGroupIdAndStatus, ResMessages.SUCCESS);
+            Page<AttendanceEntity> allByUserGroupIdAndStatus = attendanceRepository.findAllByUser_GroupIdAndStatus(groupId, status.name(), pageable);
+            return new ApiResponse<>(true, allByUserGroupIdAndStatus, ResMessages.SUCCESS);
         }catch (Exception e){
             e.printStackTrace();
             return new ApiResponse<>(false, e.getMessage());

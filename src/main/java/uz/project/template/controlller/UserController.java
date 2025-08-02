@@ -1,6 +1,7 @@
 package uz.project.template.controlller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uz.project.template.base.ApiResponse;
@@ -26,6 +27,26 @@ public class UserController {
     @GetMapping("/me")
     public HashMap<String, Object> getMe(String accessToken) {
         return authService.getMe(accessToken);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<?> getUpdate(@RequestBody UserDto userDto) {
+        return ApiResponse.controller(userService.updateUser(userDto));
+    }
+
+    @GetMapping("/getAll")
+    public ResponseEntity<?> getAll(@RequestParam int page, @RequestParam int size) {
+        return ApiResponse.controller(userService.getAll(PageRequest.of(page, size)));
+    }
+
+    @GetMapping("/getAllByRole")
+    public ResponseEntity<?> getAllByRole(@RequestParam Long roleId, @RequestParam int page, @RequestParam int size) {
+        return ApiResponse.controller(userService.getAllByRole(roleId, PageRequest.of(page, size)));
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> delete(@RequestParam Long userId) {
+        return ApiResponse.controller(userService.deleteUser(userId));
     }
 
 }

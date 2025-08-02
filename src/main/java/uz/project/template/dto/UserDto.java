@@ -5,6 +5,8 @@ import lombok.Setter;
 import uz.project.template.base.BaseDto;
 import uz.project.template.entity.AuthUserEntity;
 
+import java.util.List;
+
 /**
  * DTO for {@link uz.project.template.entity.AuthUserEntity}
  */
@@ -15,6 +17,7 @@ public class UserDto extends BaseDto{
     private String username;
     private String password;
     private Long groupId;
+    private List<Long> roleIds;
 
 
     public static AuthUserEntity toEntity(UserDto dto, AuthUserEntity entity) {

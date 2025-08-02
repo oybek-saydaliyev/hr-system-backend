@@ -8,7 +8,6 @@ import lombok.Setter;
 import uz.project.template.base.BaseEntity;
 import uz.project.template.entity.enums.AttendanceStatus;
 
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 

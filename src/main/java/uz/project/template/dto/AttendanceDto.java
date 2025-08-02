@@ -2,13 +2,10 @@ package uz.project.template.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.Value;
 import uz.project.template.base.BaseDto;
 import uz.project.template.entity.AttendanceEntity;
 import uz.project.template.entity.enums.AttendanceStatus;
 
-import java.io.Serializable;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 

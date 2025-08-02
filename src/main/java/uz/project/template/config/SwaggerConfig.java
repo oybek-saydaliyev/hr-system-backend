@@ -25,7 +25,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
                         .description("Spring Security API Documentation"))
                 .servers(List.of(
                         new Server().url("http://localhost:5050").description("Local Server"),
-                        new Server().url("https://f1e3732beffd.ngrok-free.app").description("Ngrok Server")))
+                        new Server().url("https://6bd2291670a4.ngrok-free.app").description("Ngrok Server")))
                 .components(new Components()
                         .addSecuritySchemes("bearerAuth", new SecurityScheme()
                                 .type(SecurityScheme.Type.HTTP)

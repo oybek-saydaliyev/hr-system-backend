@@ -1,5 +1,6 @@
 server:
   port: 5050
+  address: 0.0.0.0
 
 spring:
   datasource:
@@ -9,6 +10,7 @@ spring:
     driver-class-name: org.postgresql.Driver
 
   jpa:
+
     hibernate:
       ddl-auto: update
     show-sql: true
@@ -17,6 +19,8 @@ spring:
   jackson:
     time-zone: Asia/Tashkent
     date-format: yyyy-MM-dd HH:mm:ss
+
+
 
 secret:
   jwt:

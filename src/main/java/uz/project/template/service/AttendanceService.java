@@ -1,5 +1,6 @@
 package uz.project.template.service;
 
+import org.springframework.data.domain.Pageable;
 import uz.project.template.base.ApiResponse;
 import uz.project.template.dto.AttendanceDto;
 import uz.project.template.entity.enums.AttendanceStatus;
@@ -10,11 +11,11 @@ public interface AttendanceService {
 
     ApiResponse<?> getOne(Long id);
 
-    ApiResponse<?> getAll();
+    ApiResponse<?> getAll(Pageable pageable);
 
-    ApiResponse<?> getAllByUserId(Long userId);
+    ApiResponse<?> getAllByUserId(Long userId, Pageable pageable);
 
-    ApiResponse<?> getAllByGroupAndStatus(Long groupId, AttendanceStatus status);
+    ApiResponse<?> getAllByGroupAndStatus(Long groupId, AttendanceStatus status, Pageable pageable);
 
     ApiResponse<?> update(AttendanceDto dto);
 
