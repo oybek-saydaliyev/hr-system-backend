@@ -1,5 +1,6 @@
 package uz.project.template.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 import uz.project.template.base.BaseDto;

@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import uz.project.template.dto.UserDto;
-import uz.project.template.dto.UserResponseDto;
 import uz.project.template.entity.AuthUserEntity;
 import uz.project.template.repository.UserRepository;
 import uz.project.template.security.JwtUtil;
@@ -53,11 +52,10 @@ public class AuthServiceImpl implements AuthService {
 
         String accessToken = jwtUtil.generateAccessToken(user);
         String refreshToken = jwtUtil.generateRefreshToken(user);
-        UserResponseDto userResponseDto = UserResponseDto.toDto(new UserResponseDto(), user);
 
         response.put("message", ResMessages.SUCCESS);
         response.put("code", 200);
-        response.put("object", userResponseDto);
+        response.put("object", user);
         response.put("accessToken", accessToken);
         response.put("refreshToken", refreshToken);
         return response;
@@ -105,11 +103,10 @@ public class AuthServiceImpl implements AuthService {
         }
 
         AuthUserEntity user = byUsername.get();
-        UserResponseDto userResponseDto = UserResponseDto.toDto(new UserResponseDto(), user);
 
         response.put("message", ResMessages.SUCCESS);
         response.put("code", 200);
-        response.put("object", userResponseDto);
+        response.put("object", user);
         return response;
     }
 }

@@ -69,7 +69,7 @@ public class AttendanceServiceImpl implements AttendanceService {
     @Override
     public ApiResponse<?> getAllByGroupAndStatus(Long groupId, AttendanceStatus status, Pageable pageable) {
         try{
-            Page<AttendanceEntity> allByUserGroupIdAndStatus = attendanceRepository.findAllByUser_GroupIdAndStatus(groupId, status.name(), pageable);
+            Page<AttendanceEntity> allByUserGroupIdAndStatus = attendanceRepository.findAllByUser_GroupIdAndStatus(groupId, status, pageable);
             return new ApiResponse<>(true, allByUserGroupIdAndStatus, ResMessages.SUCCESS);
         }catch (Exception e){
             e.printStackTrace();

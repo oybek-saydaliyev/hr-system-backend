@@ -7,7 +7,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import uz.project.template.base.ApiResponse;
 import uz.project.template.dto.UserDto;
-import uz.project.template.dto.UserResponseDto;
 import uz.project.template.entity.AuthUserEntity;
 import uz.project.template.repository.RoleRepository;
 import uz.project.template.repository.UserRepository;
@@ -32,8 +31,7 @@ public class UserServiceImpl implements UserService {
             user.setRoles(new HashSet<>(roleRepository.findAllById(userDto.getRoleIds())));
             user.setPassword(passwordEncoder.encode(userDto.getPassword()));
             AuthUserEntity save = userRepository.save(user);
-            UserResponseDto userResponseDto = UserResponseDto.toDto(new UserResponseDto(), save);
-            return new ApiResponse<>(true, userResponseDto, ResMessages.SUCCESS);
+            return new ApiResponse<>(true, save, ResMessages.SUCCESS);
         }catch (Exception e){
             e.printStackTrace();
             return new ApiResponse<>(false, e.getMessage());
@@ -47,11 +45,10 @@ public class UserServiceImpl implements UserService {
             Optional<AuthUserEntity> byId = userRepository.findById(userDto.getId());
             if (byId.isPresent()) {
                 AuthUserEntity user = byId.get();
-                user.setPassword(passwordEncoder.encode(userDto.getPassword()));
                 user.setRoles(new HashSet<>(roleRepository.findAllById(userDto.getRoleIds())));
                 AuthUserEntity entity = UserDto.toEntity(userDto, user);
                 AuthUserEntity save = userRepository.save(entity);
-                return new ApiResponse<>(true, UserResponseDto.toDto(new UserResponseDto(), save), ResMessages.SUCCESS);
+                return new ApiResponse<>(true,  save, ResMessages.SUCCESS);
             }
             return new ApiResponse<>(false, ResMessages.USER_NOT_FOUND);
         }catch (Exception e){
@@ -65,7 +62,7 @@ public class UserServiceImpl implements UserService {
         try{
             Optional<AuthUserEntity> byId = userRepository.findById(id);
             if (byId.isPresent()) {
-                return new ApiResponse<>(true, UserResponseDto.toDto(new UserResponseDto(), byId.get()));
+                return new ApiResponse<>(true, byId.get());
             }
             return new ApiResponse<>(false, ResMessages.USER_NOT_FOUND);
         }catch (Exception e){
@@ -87,7 +84,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public ApiResponse<?> getAllByRole(Long roleId, Pageable pageable) {
         try{
-            Page<UserResponseDto> allByRoles = userRepository.findAllByRoleId(roleId, pageable);
+            Page<AuthUserEntity> allByRoles = userRepository.findAllByRoleId(roleId, pageable);
             return new ApiResponse<>(true, allByRoles, ResMessages.SUCCESS);
         }catch (Exception e){
             e.printStackTrace();
